@@ -87,3 +87,23 @@ body {
   from { top: -10%; opacity: 1; }
   to { top: 110%; opacity: 0; }
 }
+.tap {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255,255,255,0.25);
+  padding: 10px 22px;
+  border-radius: 25px;
+  font-size: 16px;
+  color: white;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 12px rgba(255,255,255,0.6);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.05); }
+  100% { transform: translateX(-50%) scale(1); }
+}
