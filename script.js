@@ -1,21 +1,33 @@
-const slides = document.querySelectorAll(".slide");
-let index = 0;
+// WAIT FOR PAGE TO LOAD
+window.addEventListener("DOMContentLoaded", function () {
 
-const slides = document.querySelectorAll(".slide");
-let index = 0;
+  const lockScreen = document.getElementById("lockScreen");
+  const content = document.getElementById("content");
+  const error = document.getElementById("error");
+  const passwordInput = document.getElementById("passwordInput");
 
-document.getElementById("nextBtn").onclick = () => {
-  slides[index].classList.remove("active");
-  index = (index + 1) % slides.length;
-  slides[index].classList.add("active");
-};
+  const slides = document.querySelectorAll(".slide");
+  const nextBtn = document.getElementById("nextBtn");
 
-function unlock() {
-  const pass = document.getElementById("passwordInput").value;
-  if (pass === "MadamJi❤️") {
-    document.getElementById("lockScreen").style.display = "none";
-    document.getElementById("content").classList.remove("hidden");
-  } else {
-    document.getElementById("error").innerText = "Sirf aapke liye hai 🤍";
+  let index = 0;
+
+  // PASSWORD UNLOCK
+  window.unlock = function () {
+    if (passwordInput.value === "MadamJi❤️") {
+      lockScreen.style.display = "none";
+      content.classList.remove("hidden");
+    } else {
+      error.innerText = "Sirf aapke liye hai 🤍";
+    }
+  };
+
+  // NEXT BUTTON
+  if (nextBtn) {
+    nextBtn.addEventListener("click", function () {
+      slides[index].classList.remove("active");
+      index = (index + 1) % slides.length;
+      slides[index].classList.add("active");
+    });
   }
-}
+
+});
