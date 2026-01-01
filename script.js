@@ -1,31 +1,20 @@
-document.addEventListener("DOMContentLoaded", function () {
+const slides = document.querySelectorAll(".slide");
+let index = 0;
 
-  const openBtn = document.getElementById("openBtn");
-  const lockScreen = document.getElementById("lockScreen");
-  const content = document.getElementById("content");
-  const passwordInput = document.getElementById("passwordInput");
-  const error = document.getElementById("error");
+// Auto slide every 5 seconds
+setInterval(() => {
+  slides[index].classList.remove("active");
+  index = (index + 1) % slides.length;
+  slides[index].classList.add("active");
+}, 5000);
 
-  const slides = document.querySelectorAll(".slide");
-  const nextBtn = document.getElementById("nextBtn");
-
-  let index = 0;
-
-  // OPEN BUTTON CLICK
-  openBtn.addEventListener("click", function () {
-    if (passwordInput.value === "MadamJi❤️") {
-      lockScreen.style.display = "none";
-      content.classList.remove("hidden");
-    } else {
-      error.innerText = "Sirf aapke liye hai 🤍";
-    }
-  });
-
-  // NEXT BUTTON CLICK
-  nextBtn.addEventListener("click", function () {
-    slides[index].classList.remove("active");
-    index = (index + 1) % slides.length;
-    slides[index].classList.add("active");
-  });
-
-});
+function unlock() {
+  const pass = document.getElementById("passwordInput").value;
+  if (pass === "MadamJi❤️") {
+    document.getElementById("lockScreen").style.display = "none";
+    document.getElementById("content").classList.remove("hidden");
+    document.getElementById("bgMusic").play();
+  } else {
+    document.getElementById("error").innerText = "Sirf aapke liye hai 🤍";
+  }
+}
