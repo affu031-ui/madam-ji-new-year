@@ -1,7 +1,6 @@
 const slides = document.querySelectorAll(".slide");
 let index = 0;
 
-// Auto slide every 5 seconds
 setInterval(() => {
   slides[index].classList.remove("active");
   index = (index + 1) % slides.length;
@@ -13,7 +12,15 @@ function unlock() {
   if (pass === "MadamJi❤️") {
     document.getElementById("lockScreen").style.display = "none";
     document.getElementById("content").classList.remove("hidden");
-    document.getElementById("bgMusic").play();
+
+    const audio = document.getElementById("bgMusic");
+    audio.src = "music.mp3";
+
+    document.getElementById("tapToPlay").onclick = () => {
+      audio.play();
+      document.getElementById("tapToPlay").style.display = "none";
+    };
+
   } else {
     document.getElementById("error").innerText = "Sirf aapke liye hai 🤍";
   }
